@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Search from './Search/Search';
 
-function App() {
-  return (
-    <div className="App">
-      <Search />
-    </div>
-  );
+class App extends Component {
+  render(){
+    return (
+      <div className="App">
+        <Search />
+      </div>
+    );
+  }
 }
 
 export default App;
