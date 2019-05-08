@@ -14,6 +14,7 @@ class GiphySearchContainer extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log(e)
         console.log(this.props + '<<<<<<<<<<<<<<<<<')
         this.props.searchGiphys(this.state);
     }
@@ -26,7 +27,7 @@ class GiphySearchContainer extends Component {
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-    What Giphy would yoi like to see? <input onChange = {this.handleChange} type ='text' name='search'/>
+    What Giphy would you like to see? <input onChange = {this.handleChange} type ='text' name='search'/>
                <input type = 'submit'/>
            </form>
         )

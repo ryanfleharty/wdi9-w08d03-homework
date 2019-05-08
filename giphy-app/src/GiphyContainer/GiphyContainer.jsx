@@ -9,16 +9,20 @@ class GiphyContainer extends Component {
                 giphy: []
         }
     }
-    //   componentDidMount(){
-    //     this.searchGiphys({search: ""});
-    //   }
+      componentDidMount(){
+        this.searchGiphys({search: ""});
+      }
+      //How do I get search result to clear out are each new search? More funtcions/logic?
     searchGiphys = async (formData) => {
-        console.log(formData + 'formdata................')
-        const searchURL = await `http://api.giphy.com/v1/gifs/search?q=${formData}&api_key=3LRPjEGRC6e0e7lwn7H8Fe848tjKA9hn`
+        //console.log(formData + 'formdata................')
+        const searchURL = await `http://api.giphy.com/v1/gifs/search?q=${formData.search}&api_key=3LRPjEGRC6e0e7lwn7H8Fe848tjKA9hn`
         // key=3LRPjEGRC6e0e7lwn7H8Fe848tjKA9hn
+        //forgot to include .search at the end of formData. 
+        //Unclear because when 
+        //I try and console log it shows me an empty object 
         const result = await fetch(searchURL);
         const parsedResult = await result.json();
-        console.log(parsedResult);
+        console.log(parsedResult.data);
         this.setState({
             giphy: parsedResult.data
     })
@@ -26,8 +30,9 @@ class GiphyContainer extends Component {
    render(){
     const giphyList = this.state.giphy.map((giphys)=>{
         return(
-            <div key={giphys.title}>
+            <div key={giphys._id}>
                 <h5>{giphys.title}</h5>
+                <img src={giphys.images.downsized.url}></img> 
             </div>
         )
     })
@@ -35,7 +40,7 @@ class GiphyContainer extends Component {
            <div>
         <h1> Giphy Search Page</h1>
            <GiphySearchContainer searchGiphys = {this.searchGiphys}/>
-         <img src=" "></img> {giphyList}
+        {giphyList}
            </div>
        )
    }
