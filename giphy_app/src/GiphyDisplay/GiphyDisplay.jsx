@@ -6,9 +6,7 @@ class GiphyDisplay extends Component {
     constructor(){
         super();
         this.state = {
-            gifs: [],
-            fuck: 'fuck'
-
+            gifs: []
         }
     }
 
@@ -33,13 +31,16 @@ class GiphyDisplay extends Component {
     
 
     render(){
-        console.log(this.state.gifs.data, "this.state.gifs.data in render");
+        console.log(this.state.gifs.data, "this.state.gifs.data in display render");
         
 
         return(
             <div>
                 <GiphyForm searchGiphy={this.searchGiphy}/>
-                <GiphyResults gifArray={this.state.gifs.data}/>
+                {
+                    this.state.gifs.data && <GiphyResults gifArray={this.state.gifs.data}/>
+                }
+                
             </div>
         )
 
