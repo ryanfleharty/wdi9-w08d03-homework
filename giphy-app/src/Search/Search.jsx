@@ -18,7 +18,7 @@ class Search extends Component {
         const gifsShow = gifsArray.map((gif) => {
             return(
                 <div className="iframes">
-                    <iframe src={ gif.embed_url } />
+                    <img src={ gif.images.original.url } />
                 </div>
             )
         })
