@@ -11,7 +11,7 @@ class Search extends Component {
     }
 
     searchGifs = async () => {
-        const foundGifs = await fetch(`http://api.giphy.com/v1/gifs/search?q=${this.state.search}&api_key=odlUICrQM1k9JLaNEuq2i1yVTfcv359M`);
+        const foundGifs = await fetch(`http://api.giphy.com/v1/gifs/search?q=${this.state.search}&api_key=odlUICrQM1k9JLaNEuq2i1yVTfcv359M&limit=5`);
         const parsedGifs = await foundGifs.json();
 
         const gifsArray = parsedGifs.data;
@@ -19,7 +19,7 @@ class Search extends Component {
         const gifsShow = gifsArray.map((gif) => {
             return(
                 <div>
-                    { gif.embed_url }
+                    <iframe src={ gif.embed_url } />
                 </div>
             )
         })
