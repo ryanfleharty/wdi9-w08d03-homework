@@ -1,16 +1,30 @@
 import React, {Component} from 'react';
 
+
 class GiphySearchForm extends Component {
     constructor(){
         super();
         this.state = {
-            gif: ""
+            gif: [],
+            searchString: ''
         }
     }
+    handleSearch = (e) => {
+        e.preventDefault();
+        this.props.searchGifs(this.state.searchString);
+    }
+    handleSearchStringChange = (e) => {
+        this.setState({searchString: e.target.value});
+    }
     render(){
-        return <div>
-            <h2>search form goes here</h2>
-        </div>
+        return ( 
+            <form onSubmit={this.handleSearch}>
+                Search Giphy: <input type="text" name="search" value={this.state.searchString} onChange={this.handleSearchStringChange}/>
+                <input type="submit"/>
+            </form>
+            
+        )
+        
     }
 }
 

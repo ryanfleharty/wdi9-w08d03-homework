@@ -12,8 +12,8 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <h2>suh dude.</h2>
-        <GiphySearchForm></GiphySearchForm>
+        <h2>GIPHY SEARCH</h2>
+        <GiphyContainer></GiphyContainer>
       </div>
     );
   }
