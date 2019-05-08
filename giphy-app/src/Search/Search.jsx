@@ -9,22 +9,22 @@ class Search extends Component {
         }
     }
 
-    componentDidMount = async () => {
-        const foundGifs = await fetch('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=odlUICrQM1k9JLaNEuq2i1yVTfcv359M');
+    searchGifs = async () => {
+        const foundGifs = await fetch(`http://api.giphy.com/v1/gifs/search?q=${this.state.search}&api_key=odlUICrQM1k9JLaNEuq2i1yVTfcv359M`);
         const parsedGifs = await foundGifs.json();
-        console.log(parsedGifs)    
+        console.log(parsedGifs, 'parsedGifs')    
     };
     handleChange = (e) => {
-        this.setState = {
+        this.setState({
             [e.target.name] : e.target.value
-        }
-    };
+        })
+    }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.searchGifs(this.state);
+        this.searchGifs(this.state);
     };
     render(){
-        console.log(this.state.search)
+        console.log(this.state.search, 'search')
 
         return (
             <div>
