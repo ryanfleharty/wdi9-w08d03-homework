@@ -19,7 +19,6 @@ class GiphyResults extends Component {
 
         return(
             <div>
-                <h1>Sanity Check</h1>
                 {gifList}
             </div>
         )
