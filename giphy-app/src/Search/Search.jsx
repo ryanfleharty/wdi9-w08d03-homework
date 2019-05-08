@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import GifsContainer from '../GifsContainer/GifsContainer';
 
 class Search extends Component {
     constructor(){
         super();
         this.state = {
             search: "",
-            results: ['show something', 'something else']
+            results: []
         }
     }
 
     searchGifs = async () => {
-        const foundGifs = await fetch(`http://api.giphy.com/v1/gifs/search?q=${this.state.search}&api_key=odlUICrQM1k9JLaNEuq2i1yVTfcv359M&limit=5`);
+        const foundGifs = await fetch(`http://api.giphy.com/v1/gifs/search?q=${this.state.search}&api_key=odlUICrQM1k9JLaNEuq2i1yVTfcv359M&limit=9`);
         const parsedGifs = await foundGifs.json();
 
         const gifsArray = parsedGifs.data;
         console.log(gifsArray, 'gifsArray')
         const gifsShow = gifsArray.map((gif) => {
             return(
-                <div>
+                <div className="iframes">
                     <iframe src={ gif.embed_url } />
                 </div>
             )
@@ -41,8 +40,8 @@ class Search extends Component {
             <div>
                 <h1>get your gif on...</h1>
                 <form onSubmit={ this.handleSubmit }>
-                    search for gifs: <input onChange={ this.handleChange } type="text" name="search" placeholder="something goofy? funny? cats?"/>
-                    <input type="submit"/>
+                    <h3>search for gifs: <input onChange={ this.handleChange } type="text" name="search" placeholder="when in doubt, search for cats"/>
+                    <button type="submit">SUBMIT</button></h3>
                 </form>
                 { this.state.results }
             </div>
