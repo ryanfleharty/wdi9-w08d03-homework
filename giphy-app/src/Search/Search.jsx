@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GifsContainer from '../GifsContainer/GifsContainer';
 
 class Search extends Component {
     constructor(){
@@ -12,7 +13,19 @@ class Search extends Component {
     searchGifs = async () => {
         const foundGifs = await fetch(`http://api.giphy.com/v1/gifs/search?q=${this.state.search}&api_key=odlUICrQM1k9JLaNEuq2i1yVTfcv359M`);
         const parsedGifs = await foundGifs.json();
-        console.log(parsedGifs, 'parsedGifs')    
+
+        const gifsArray = parsedGifs.data;
+        console.log(gifsArray, 'gifsArray')
+        const gifsShow = gifsArray.map((gif) => {
+            return(
+                <div>
+                    { gif.embed_url }
+                </div>
+            )
+        })
+        this.setState({
+            results: gifsShow
+        })
     };
     handleChange = (e) => {
         this.setState({
@@ -24,16 +37,14 @@ class Search extends Component {
         this.searchGifs(this.state);
     };
     render(){
-        console.log(this.state.search, 'search')
-
         return (
             <div>
                 <h1>get your gif on...</h1>
                 <form onSubmit={ this.handleSubmit }>
                     search for gifs: <input onChange={ this.handleChange } type="text" name="search" placeholder="something goofy? funny? cats?"/>
                     <input type="submit"/>
-                    { this.props.gifs }
                 </form>
+                { this.state.results }
             </div>
         )
     };
