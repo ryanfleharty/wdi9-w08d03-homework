@@ -5,6 +5,7 @@ class GiphContainer extends Component {
     constructor(){
     super();
     this.state={
+
         giphs: []
     }
  }
@@ -13,12 +14,13 @@ class GiphContainer extends Component {
      this.searchGiphys({search: ""});
  }
  searchGiphys = async (formData) => {
+     console.log(formData.search);
      try{
-    const searchURL = (`https://cors-anywhere.herokuapp.com/https://api.giphy.com/v1/gifs/search?q=${formData}&api_key=4BcBQiIzgErTHb8ELALdQpbC9EHbdUhF&q=funny&limit=25`)
+    const searchURL = (`https://cors-anywhere.herokuapp.com/https://api.giphy.com/v1/gifs/search?q=${formData.search}&api_key=4BcBQiIzgErTHb8ELALdQpbC9EHbdUhF&limit=25`)
     const result = await fetch(searchURL);
     console.log('this');
     const parsedResult = await result.json();
-
+    console.log(parsedResult.data);
     this.setState({
         giphs: parsedResult.data 
     })
@@ -31,7 +33,7 @@ class GiphContainer extends Component {
  render(){
     const giphList = this.state.giphs.map((giphs)=>{
         return(
-         <div key={giphs.url}>
+         <div key={giphs.id}>
          <img src={giphs.images.downsized.url}/>
      </div>
         )
